@@ -39,9 +39,17 @@ its peak, and guardrail pacing keeps the run on pace for >= 40 coins
 
 ## Local results (`grade-local --driver process`)
 
-- Dev grade: **net PnL, Sharpe, fills, coins — see below (final numbers
-  after the last parameter sweep)**.
+- Dev grade (24h dev window): **net PnL +0.125 SOL, hourly Sharpe
+  +0.224, Sortino +0.615**, win rate 38.5%, 65 round trips on 65
+  coins, 129 fills, max drawdown 0.86%, fees 0.072 SOL curve +
+  0.014 SOL tx. Top 3 coins are 32% of gains; without them net PnL
+  is still +0.01 SOL. At 2x fees net PnL is +0.038 SOL.
 - Two executions reproduce byte for byte (`L1 regrade: reproduced`).
+- Stress (`--stress 5`, rebuilt block surrogates): median **-0.05 SOL**,
+  p10 -0.09, p90 +0.15; **4 of 5 copies lost money**. The dev-window
+  edge is fragile — it does not survive resampled windows, so treat
+  the +0.125 SOL as a point estimate with a wide interval (90%
+  interval -0.05 .. +0.29 SOL), not a proven edge.
 
 ## Why this shape
 
